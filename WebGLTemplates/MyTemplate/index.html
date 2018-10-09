@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Unity WebGL Player | %UNITY_WEB_NAME%</title>
+    <link rel="shortcut icon" href="TemplateData/favicon.ico">
+    <link rel="stylesheet" href="TemplateData/style.css">
+    <script src="TemplateData/UnityProgress.js"></script>  
+    <script src="%UNITY_WEBGL_LOADER_URL%"></script>
+  </head>
+  <body onload="Reset()" onresize="Reset()">
+     <script language="JavaScript" type="text/javascript">
+     window.onload = function(){
+      if (navigator.userAgent.indexOf('Firefox') >= 66)
+     {
+        //alert(navigator.userAgent.indexOf('Firefox'));
+      var gameInstance = UnityLoader.instantiate("gameContainer", "%UNITY_WEBGL_BUILD_URL%", {onProgress: UnityProgress});
+      }
+      else {
+          var answer = confirm("请使用最新版火狐浏览器进行浏览\u000d是否跳转到火狐官方网站进行下载") //把确认框赋值给answer
+          if(answer)                                    //判断是否点击确定
+          window.location ="http://www.firefox.com.cn/" //确定的话游览器自身跳转
+      }
+    }
+    </script>
+    <script>
+      function Reset() {
+       var canvas = document.getElementById("#canvas"); 
+       canvas.height= document.documentElement.clientHeight;
+       canvas.width = document.documentElement.clientWidth; 
+       console.log(canvas.width );
+      } 
+    </script>
+      <div class="webgl-content"style="width: 100%; height: 100%" >
+      <div id="gameContainer" style="width: 100%; height: 100%"></div>
+    </div>
+  </body>
+</html>
